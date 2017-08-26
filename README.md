@@ -1,0 +1,1 @@
+# hadoopgit init
