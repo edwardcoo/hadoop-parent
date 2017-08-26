@@ -1,7 +1,7 @@
 package com.edc.kafka;
 
+import com.edc.utils.ConfigProperties;
 import com.edc.utils.ParamsUtil;
-import com.edc.utils.PropertiesUtil;
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
@@ -62,8 +62,8 @@ public class CustomKafkaConsumer {
         // group 代表一个消费组
         props.put("group.id", groupId);
         // zk超时配置
-        props.put("zookeeper.session.timeout.ms", PropertiesUtil.instance().getVal("zookeeper.session.timeout.ms", "1000"));
-        props.put("zookeeper.sync.time.ms", PropertiesUtil.instance().getVal("zookeeper.sync.time.ms", "1000"));
+        props.put("zookeeper.session.timeout.ms", ConfigProperties.get("zookeeper.session.timeout.ms", "1000"));
+        props.put("zookeeper.sync.time.ms", ConfigProperties.get("zookeeper.sync.time.ms", "1000"));
         props.put("auto.commit.enable", "true");
         props.put("auto.commit.interval.ms","1000");
         props.put("auto.offset.reset", ParamsUtil.getKafkaParam(ParamsUtil.KAFKA_AUTO_OFFSET_RESET,"smallest"));
