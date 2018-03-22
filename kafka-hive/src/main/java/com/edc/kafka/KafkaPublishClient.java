@@ -34,24 +34,25 @@ public class KafkaPublishClient {
         String topic = "customer_base_group";
         for(int i = 0; i < 5; i++){
             String msg = "200"+i+"~select count(1) from tableA where clumn1='123'~2000~0.1~memberNo~asc";
-            KafkaPublishClient.send(topic, msg);
+//            KafkaPublishClient.send(topic, msg);
         }
 
-//        Properties props = new Properties();
+        Properties props = new Properties();
 //        props.put("bootstrap.servers", "192.168.52.160:9092,192.168.52.161:9092,192.168.52.162:9092");
-//        props.put("acks", "all");
-//        props.put("retries", 0);
-//        props.put("batch.size", 16384);
-//        props.put("linger.ms", 1);
-//        props.put("buffer.memory", 33554432);
-//        props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-//        props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-//
-//        Producer<String, String> producer = new KafkaProducer<>(props);
-//        for(int i = 0; i < 10; i++){
-//            String msg = "200"+i+"~select count(1) from tableA where clumn1='123'~2000~0.1~memberNo~asc";
-//            producer.send(new ProducerRecord<String, String>(topic, msg));
-//        }
+        props.put("bootstrap.servers", "bi101:9092,bi102:9092,bi103:9092");
+        props.put("acks", "all");
+        props.put("retries", 0);
+        props.put("batch.size", 16384);
+        props.put("linger.ms", 1);
+        props.put("buffer.memory", 33554432);
+        props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+
+        Producer<String, String> producer = new KafkaProducer<>(props);
+        for(int i = 0; i < 10; i++){
+            String msg = "200"+i+"~select count(1) from tableA where clumn1='123'~2000~0.1~memberNo~asc";
+            producer.send(new ProducerRecord<String, String>(topic, msg));
+        }
 
     }
 

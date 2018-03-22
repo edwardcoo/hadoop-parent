@@ -66,6 +66,7 @@ public class CustomKafkaConsumer {
         props.put("zookeeper.sync.time.ms", ConfigProperties.get("zookeeper.sync.time.ms", "1000"));
         props.put("auto.commit.enable", "true");
         props.put("auto.commit.interval.ms","1000");
+        props.put("consumer.timeout.ms","10000");
         props.put("auto.offset.reset", ParamsUtil.getKafkaParam(ParamsUtil.KAFKA_AUTO_OFFSET_RESET,"smallest"));
         // 序列化类
         props.put("serializer.class", "kafka.serializer.StringEncoder");
